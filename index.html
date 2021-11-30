@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="style.css">
+    <title>Gerador de commit</title>
+</head>
+<body >
+    
+    <div class="container">
+        <div class="color">
+
+    
+        <h1>Gerador</h1>
+        <div class="items">
+            <label for="">Numero da tarefa</label>
+            <input type="number" id="NumeroT">
+            
+           
+        </div>
+        <div class="items">
+            <label for="">Titulo da tarefa</label>
+            <input type="text" id="Titulo">
+            
+        </div>
+        <div class="items">
+            <label for="">Codigo Issue</label>
+            <input type="number" id="Issue">
+            
+        </div>
+        <div class="items">
+            <label for="">Tipo</label>
+            <select name="Tipo" id="Tipo">
+                <option value="feature">Feature</option>
+                <option value="bugfix">Bugfix</option>
+                <option value="hotfix">Hotfix</option>
+                
+            </select>
+            
+        </div>
+        <div class="items">
+            <label for="">Ambiente</label>
+            <select name="Ambientes" id="ambiente">
+                <option value="Matic">Matic</option>
+                <option value="Asprofargs">Asprofargs</option>
+                <option value="Farmavip">Farmavip</option>
+                
+            </select>
+            
+            
+           
+        </div>
+        <div class="items">
+            <label for="">Mais de um ambiente</label>
+            <input class="ch" type="checkbox">
+        </div>
+        <div class="items">
+            <label>Arquivos modificados</label>
+            <textarea id="TextArea"></textarea>
+        </div>
+        <div class="item">
+            <button onclick="gerar()">Gerar</button>
+        </div>
+    </div>
+    </div>
+    <script src="Filesever.js"></script>
+    <script>
+
+        
+
+        function gerar(){
+            //variaveis 
+            var nTarefa = document.getElementById('NumeroT').value;
+            var titulo = document.getElementById('Titulo').value;
+            var cIssue = document.getElementById('Issue').value;
+            var tTipo = document.getElementById('Tipo').value;
+            var tAmbiente = document.getElementById('ambiente').value;
+            var tTextArea = document.getElementById('TextArea').value;
+            
+            var blob = new Blob(["t" + nTarefa + " - " + titulo + "\n\n\n" + "Commit: "+"#"+nTarefa+" - " + titulo + "\n\n\n"  + "Ambiente: " + tAmbiente + "\n\n\n" +"Branch: " + tTipo + "/" + tTipo + "_" + cIssue + "\n\n\n\n\n" + "Arquivos modificados: " + tTextArea], {type: "text/plain;charset=utf-8"});
+            saveAs(blob, "t" + nTarefa + " - " + titulo);
+        }
+        
+    </script>
+
+</body>
+</html>
